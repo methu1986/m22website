@@ -37,6 +37,37 @@
       pointer-events: none;
     }
 
+    /* Scrolling text over header */
+  /* Scrolling text over header */
+.scrolling-text {
+  position: absolute;
+  bottom: 20px; /* adjust vertical position */
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 1.2rem; /* slightly bigger */
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  z-index: 2;
+}
+
+/* Gradient color effect */
+.scrolling-text span {
+  display: inline-block;
+  padding-left: 100%;
+  background: linear-gradient(90deg, #ffdd55, #00aced, #ff55aa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: scrollText 40s linear infinite;
+}
+
+@keyframes scrollText {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+
     header h1 {
       font-size: 3.8rem;
       font-weight: bold;
@@ -45,6 +76,7 @@
       text-shadow: 2px 2px 5px rgba(0,0,0,0.6),
                    4px 4px 10px rgba(0,0,0,0.4);
       color: #ffdd55; /* fixed 2D color */
+      z-index: 2;
     }
 
     /* Navigation */
@@ -119,6 +151,12 @@
   <!-- Header with falling flowers -->
   <header>
     <canvas id="flowerCanvas"></canvas>
+
+    <!-- Scrolling text -->
+    <div class="scrolling-text">
+Your vision, our technology! M22 Square Software Solutions transforms your ideas into stunning apps and websites. Let’s create together! Contact now: 08823-223677
+    </div>
+
     <h1>M22 Square Software Solutions</h1>
   </header>
 
@@ -147,21 +185,20 @@
   <section id="products">
     <h2>Featured Product</h2>
     <div class="products">
-<div class="card">
-  <h3>Shael's_Maa</h3>
-  <p>
-    A complete school management software: attendance, hall tickets, progress reports,
-    fees, expenditure, WhatsApp messaging, and more.
-  </p>
-  <p>
-    <a href="https://shaelsmaa.rf.gd" target="_blank" 
-       style="display:inline-block; margin-top:10px; padding:10px 20px; 
-              background:#0078d7; color:white; border-radius:6px; text-decoration:none;">
-       Visit Website
-    </a>
-  </p>
-</div>
-
+      <div class="card">
+        <h3>Shaels_maa</h3>
+        <p>
+          A complete school management software: attendance, hall tickets, progress reports,
+          fees, expenditure, WhatsApp messaging, and more.
+        </p>
+        <p>
+          <a href="https://shaelsmaa.rf.gd" target="_blank" 
+             style="display:inline-block; margin-top:10px; padding:10px 20px; 
+                    background:#0078d7; color:white; border-radius:6px; text-decoration:none;">
+             Visit Website
+          </a>
+        </p>
+      </div>
       <div class="card">
         <h3>Why Choose Us?</h3>
         <p>10+ years of experience • 100+ projects • 98% client satisfaction</p>
@@ -178,23 +215,22 @@
   </section>
 
   <!-- Contact -->
- <section id="contact">
-  <div class="contact">
-    <h2>Contact Us</h2>
-    <p>📞 Phone: 08823-223677</p>
-    <p>✉️ Email: methushal1986@gmail.com</p>
-    <p>📍 Address: M22 Square Software Solutions, Fire Station Center, Chintalapudi, Eluru District, Andhra Pradesh – 534460</p>
-    <p>Business Hours: 9:00 AM – 5:00 PM</p>
-  </div>
-</section>
-
+  <section id="contact">
+    <div class="contact">
+      <h2>Contact Us</h2>
+      <p>📞 Phone: 08823-223677</p>
+      <p>✉️ Email: methushal1986@gmail.com</p>
+      <p>📍 Address: M22 Square Software Solutions, Fire Station Center, Chintalapudi, Eluru District, Andhra Pradesh – 534460</p>
+      <p>Business Hours: 9:00 AM – 5:00 PM</p>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer>
     <p>© 2025 M22 Square Software Solutions. All rights reserved.</p>
   </footer>
 
-  <!-- Falling Flowers Script (2D only in header) -->
+  <!-- Falling Flowers Script -->
   <script>
     const canvas = document.getElementById("flowerCanvas");
     const ctx = canvas.getContext("2d");
@@ -247,6 +283,11 @@
       requestAnimationFrame(animate);
     }
     animate();
+
+    // Scrolling text
+    const scrollingDiv = document.querySelector('.scrolling-text');
+    const text = scrollingDiv.textContent;
+    scrollingDiv.innerHTML = `<span>${text}</span>`;
   </script>
 </body>
 </html>
