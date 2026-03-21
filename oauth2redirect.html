@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirecting...</title>
+</head>
+<body>
+
+<h3>Signing you in...</h3>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+
+    if (code) {
+        // Send back to your Android app
+        window.location.href = "m22square://oauth2redirect?code=" + code;
+    } else {
+        document.body.innerHTML = "Login failed!";
+    }
+</script>
+
+</body>
+</html>
