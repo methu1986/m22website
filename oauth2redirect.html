@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Redirecting...</title>
-</head>
 <body>
 
 <h3>Signing you in...</h3>
+
+<button id="openApp" style="display:none;">Continue to App</button>
 
 <script>
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
 
 if (code) {
-    window.location.href = "m22square://oauth2redirect?code=" + code;
-} else {
-    document.body.innerHTML = "Login failed!";
+    const deepLink = "m22square://oauth2redirect?code=" + code;
+
+    // Try auto redirect
+    setTimeout(() => {
+        window.location.href = deepLink;
+    }, 200);
+
+    // Show manual button if blocked
+    setTimeout(() => {
+        document.getElementById("openApp").style.display = "block";
+        document.getElementById("openApp").onclick = () => {
+            window.location.href = deepLink;
+        };
+    }, 1500);
 }
 </script>
 
