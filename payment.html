@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://m22square.razorpay.com/v1/checkout.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
 <script>
 function startPayment() {
 
     var options = {
-        "key": "rzp_test_Sdn2wJ4xVIDn70", // 🔥 YOUR TEST KEY
-        "amount": "20000", // ₹200
+        "key": "rzp_test_Sdn2wJ4xVIDn70",
+        "amount": "20000",
         "currency": "INR",
         "name": "SevaSetu",
         "description": "Service Payment",
         "handler": function (response){
-            // send success back to app
             window.location.href = "success://" + response.razorpay_payment_id;
         },
         "prefill": {
