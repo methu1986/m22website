@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Payment Success</title>
+</head>
 <body>
 
-<h2>Processing Payment...</h2>
+<h2>Payment Successful ✅</h2>
+<p>You can return to the app.</p>
 
 <script>
-const params = new URLSearchParams(window.location.search);
-const paymentId = params.get("payment_id");
+    const params = new URLSearchParams(window.location.search);
+    const paymentId = params.get("payment_id");
 
-fetch("https://m22square.com/api/verifypayment", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ payment_id: paymentId })
-})
-.then(res => res.text())
-.then(data => {
-    document.body.innerHTML = "<h2>Payment Successful!</h2>";
-});
+    document.body.innerHTML += "<p>Payment ID: " + paymentId + "</p>";
 </script>
+
+<br><br>
+<a href="sevasetu://payment-success">Open App</a>
 
 </body>
 </html>
