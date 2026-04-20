@@ -9,19 +9,20 @@ function startPayment() {
 
     var options = {
         "key": "rzp_test_Sdn2wJ4xVIDn70",
-        "amount": "20000",
+        "amount": "200",
         "currency": "INR",
         "name": "SevaSetu",
         "description": "Service Payment",
         "handler": function (response){
-            window.location.href = "success://" + response.razorpay_payment_id;
+
+            // redirect to success page
+            window.location.href = 
+            "https://m22square.com/success.html?payment_id=" 
+            + response.razorpay_payment_id;
         },
         "prefill": {
-            "email": "sevasetuctp@gmail.com",
-            "contact": "9491350345"
-        },
-        "theme": {
-            "color": "#4CAF50"
+            "email": "test@email.com",
+            "contact": "9999999999"
         }
     };
 
@@ -33,4 +34,3 @@ window.onload = startPayment;
 </script>
 </body>
 </html>
-
