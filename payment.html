@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SevaSetu Payment</title>
+    <title>Payment</title>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
@@ -10,46 +10,36 @@
 window.onload = function () {
 
     var options = {
-        "key": "rzp_test_Sdn2wJ4xVIDn70", // 🔥 your test key
-        "amount": "20000", // ₹200 (in paise)
-        "currency": "INR",
-        "name": "SevaSetu",
-        "description": "Service Payment",
+        key: "rzp_test_Sdn2wJ4xVIDn70",
+        amount: "20000",
+        currency: "INR",
+        name: "SevaSetu",
+        description: "Service Payment",
 
-        "handler": function (response){
-            
+        handler: function (response){
 
             var paymentId = response.razorpay_payment_id;
 
-            // 🔥 Try to open mobile app
-            window.location.href =
-            "sevasetu://payment-success?payment_id=" + paymentId;
+            // 🔥 Try deep link
+            var iframe = document.createElement("iframe");
+            iframe.style.display = "none";
+            iframe.src = "sevasetu://payment-success?payment_id=" + paymentId;
+            document.body.appendChild(iframe);
 
-            // 🔥 Fallback (if app not opened)
+            // 🔥 Fallback
             setTimeout(function(){
                 window.location.href =
                 "https://m22square.com/success.html?payment_id=" + paymentId;
-            }, 2000);
-        },
-
-        "prefill": {
-            "email": "test@email.com",
-            "contact": "9999999999"
-        },
-
-        "theme": {
-            "color": "#4CAF50"
+            }, 1500);
         }
     };
 
     var rzp = new Razorpay(options);
 
-    // ❌ Handle payment failure
     rzp.on('payment.failed', function (response){
         alert("Payment Failed: " + response.error.description);
     });
 
-    // 🔥 Open checkout
     rzp.open();
 };
 </script>
