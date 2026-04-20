@@ -16,9 +16,9 @@ function startPayment() {
         "handler": function (response){
 
             // redirect to success page
-            window.location.href = 
-            "https://m22square.com/success.html?payment_id=" 
-            + response.razorpay_payment_id;
+ window.location.href = 
+"sevasetu://payment-success?payment_id=" 
++ response.razorpay_payment_id;
         },
         "prefill": {
             "email": "test@email.com",
